@@ -29,8 +29,7 @@
                 <div class="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
             </div>
             <div class="aspect-video bg-stone-900 rounded-3xl overflow-hidden shadow-2xl relative border-4 border-white">
-                <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/_aSBiOmaALA?si=W1hMRwbgVuMhXFRh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
+                <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/B2S1EngkjQk?si=N1G9VvrFu6qzretC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </section>
 
         <section class="bg-white py-20">
