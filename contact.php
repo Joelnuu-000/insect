@@ -1,119 +1,131 @@
 <?php
-// 引入 PHPMailer
+/**
+ * contact.php - 鱗的執行人 聯絡表單完整版
+ * 針對 Railway 雲端環境優化連線設定
+ */
+
+// 1. 強制延長 PHP 執行上限，避免 30 秒超時錯誤
+set_time_limit(60);
+
+// 引入 PHPMailer 套件 (請確保你已透過 composer 安裝)
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 require 'vendor/autoload.php';
 
-$message_status = "";
+$message_sent = false;
+$error_message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name    = htmlspecialchars($_POST['name']);
-    $email   = htmlspecialchars($_POST['email']);
-    $subject = htmlspecialchars($_POST['subject']);
-    $body    = nl2br(htmlspecialchars($_POST['message']));
-
     $mail = new PHPMailer(true);
 
     try {
-        // --- SMTP 設定 (以 Gmail 為例) ---
+        // --- SMTP 伺服器設定 ---
+        // 2. 開啟 Debug 模式：這會將連線過程輸出到 Railway 的 Deploy Logs 中
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER; 
+        
         $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';             // SMTP 伺服器
+        $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
+        
+        // 3. 帳號資訊 (建議之後改用 Railway 環境變數 Environment Variables)
         $mail->Username   = 'tsungpin950118@gmail.com';       // 您的信箱
-        $mail->Password   = 'eyhmeeyzflqsomni';          // 您的應用程式密碼 (非一般登入密碼)
-        $mail->SMTPSecure = 'ssl';                      // 加密方式
+        $mail->Password   = 'eyhmeeyzflqsomni'; // 請務必確認已申請「應用程式密碼」
+        
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // 強制使用 SSL (Port 465)
         $mail->Port       = 465;
-        $mail->Timeout    = 60;                       // 設定 SMTP 連線逾時時間 
         $mail->CharSet    = 'UTF-8';
-    
-        // --- 寄件者與收件者 ---
-        $mail->setFrom('tsungpin950118@gmail.com', '臺大昆蟲營系統');
-        $mail->addAddress('tsungpin950118@gmail.com');      // 接收通知的信箱
-        $mail->addReplyTo($email, $name);                 // 使用者回信給誰
 
-        // --- 內容設定 ---
+        // 4. 解決 Railway 超時的核心：忽略 SSL 憑證驗證
+        // 雲端容器時常因為找不到本地 CA 憑證而卡死在連線階段
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
+
+        // --- 收件人與內容設定 ---
+        $user_email = $_POST['email'];
+        $user_name  = $_POST['name'];
+        $user_msg   = $_POST['message'];
+
+        $mail->setFrom('tsungpin950118@gmail.com', '鱗的執行人-官網系統');
+        $mail->addAddress('tsungpin950118@gmail.com'); // 收件人改為你自己，或是營隊信箱
+        $mail->addReplyTo($user_email, $user_name);
+
         $mail->isHTML(true);
-        $mail->Subject = "【聯絡諮詢】" . $subject;
-        $mail->Body    = "<h3>收到來自 $name 的訊息</h3>
-                          <p><b>電子信箱：</b>$email</p>
-                          <p><b>內容：</b><br>$body</p>";
+        $mail->Subject = "=?UTF-8?B?".base64_encode("【新聯絡訊息】來自：$user_name")."?=";
+        $mail->Body    = "
+            <h3>收到新的聯絡訊息</h3>
+            <p><b>姓名：</b> {$user_name}</p>
+            <p><b>信箱：</b> {$user_email}</p>
+            <p><b>內容：</b><br>{$user_msg}</p>
+            <hr>
+            <p>本信件由 ntuinstectcamp 系統自動發送</p>
+        ";
 
         $mail->send();
-        $message_status = '<div class="bg-emerald-100 text-emerald-800 p-4 rounded-xl mb-6 font-bold text-center">✅ 訊息已成功送出，我們會儘快回覆您！</div>';
+        $message_sent = true;
     } catch (Exception $e) {
-        $message_status = '<div class="bg-red-100 text-red-800 p-4 rounded-xl mb-6 font-bold text-center">❌ 寄送失敗。錯誤原因: ' . $mail->ErrorInfo . '</div>';
+        // 將錯誤訊息記錄下來，方便前端顯示
+        $error_message = "郵件發送失敗。錯誤原因: {$mail->ErrorInfo}";
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>聯絡我們 - 臺大昆蟲營</title>
+    <title>聯絡我們 - 鱗的執行人</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-stone-50 text-stone-800 font-sans antialiased pt-24">
-
+<body class="bg-stone-50 text-stone-800 pt-24">
     <?php include 'navbar.php'; ?>
 
-    <main class="max-w-4xl mx-auto px-4 py-12">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl font-black text-emerald-800 mb-4">聯絡我們</h1>
-            <p class="text-stone-600">對營隊有任何疑問嗎？歡迎透過下方表單或社群媒體與我們聯絡</p>
-        </div>
+    <div class="max-w-2xl mx-auto px-6 py-12 bg-white shadow-xl rounded-3xl border border-stone-100">
+        <h2 class="text-3xl font-black mb-8 text-emerald-800">聯絡我們</h2>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="space-y-6">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
-                    <h3 class="text-lg font-bold text-emerald-700 mb-2">電子信箱</h3>
-                    <p class="text-stone-600">ntu2026insectcamp@gmail.com</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
-                    <h3 class="text-lg font-bold text-emerald-700 mb-2">社群媒體</h3>
-                    <p class="text-stone-600">Facebook: 臺大昆蟲研習營</p>
-                    <p class="text-stone-600">Instagram: @ntu_insectcamp</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
-                    <h3 class="text-lg font-bold text-emerald-700 mb-2">營隊地點</h3>
-                    <p class="text-stone-600">106 臺北市大安區羅斯福路四段1號 學新館六樓 (臺灣大學昆蟲系)
-                    </p>
-                </div>
+        <?php if ($message_sent): ?>
+            <div class="bg-emerald-100 border border-emerald-400 text-emerald-700 px-6 py-4 rounded-xl mb-6">
+                訊息已成功寄出！我們會儘快回覆您。
             </div>
+            <a href="index.php" class="text-emerald-600 font-bold hover:underline">← 回首頁</a>
+        <?php else: ?>
+            
+            <?php if ($error_message): ?>
+                <div class="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-xl mb-6 text-sm">
+                    <strong>發送出錯：</strong><br>
+                    請檢查 Railway Deploy Logs 以取得完整偵錯資訊。
+                </div>
+            <?php endif; ?>
 
-            <div class="md:col-span-2 bg-white p-8 rounded-3xl shadow-xl border border-stone-100">
-                <?= $message_status ?>
-                <form action="contact.php" method="POST" class="space-y-4">
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-bold text-stone-700 mb-1">您的姓名</label>
-                            <input type="text" name="name" required class="w-full px-4 py-2 border border-stone-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-stone-700 mb-1">電子信箱</label>
-                            <input type="email" name="email" required class="w-full px-4 py-2 border border-stone-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-stone-700 mb-1">主旨</label>
-                        <input type="text" name="subject" required class="w-full px-4 py-2 border border-stone-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-stone-700 mb-1">訊息內容</label>
-                        <textarea name="message" rows="5" required class="w-full px-4 py-2 border border-stone-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl hover:bg-emerald-700 transition shadow-lg">
-                        送出訊息(現在是河馬收到喔)
-                    </button>
-                </form>
-            </div>
-        </div>
-    </main>
+            <form action="contact.php" method="POST" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-bold text-stone-600 mb-2">您的姓名</label>
+                    <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-emerald-500 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-stone-600 mb-2">電子信箱</label>
+                    <input type="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-emerald-500 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-stone-600 mb-2">訊息內容</label>
+                    <textarea name="message" rows="5" required class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-emerald-500 outline-none transition"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-emerald-600 text-white font-black py-4 rounded-xl hover:bg-emerald-700 transition shadow-lg active:scale-[0.98]">
+                    發送訊息
+                </button>
+            </form>
+        <?php endif; ?>
+    </div>
 
-    <footer class="bg-stone-900 text-stone-400 py-12 text-center mt-20">
-        <p>&copy; 2026 國立臺灣大學昆蟲研習營. All rights reserved.</p>
+    <footer class="mt-20 py-10 text-center text-stone-400 text-sm">
+        &copy; 2026 國立台灣大學昆蟲研習營 ‧ 鱗的執行人
     </footer>
-
 </body>
 </html>
