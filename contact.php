@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <textarea name="message" rows="5" required class="w-full px-4 py-2 border border-stone-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
                     </div>
                     <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl hover:bg-emerald-700 transition shadow-lg">
-                        送出訊息
+                        送出訊息(現在是河馬收到喔)
                     </button>
                 </form>
             </div>
