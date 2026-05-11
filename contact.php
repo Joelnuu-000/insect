@@ -22,8 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->SMTPAuth   = true;
         $mail->Username   = 'tsungpin950118@gmail.com';       // 您的信箱
         $mail->Password   = 'eyhmeeyzflqsomni';          // 您的應用程式密碼 (非一般登入密碼)
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
+        $mail->SMTPSecure = 'ssl';                      // 加密方式
+        $mail->Port       = 465;
+        $mail->Timeout    = 60;                       // 設定 SMTP 連線逾時時間 
         $mail->CharSet    = 'UTF-8';
     
         // --- 寄件者與收件者 ---
