@@ -20,15 +20,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';             // SMTP 伺服器
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'your_email@gmail.com';       // 您的信箱
-        $mail->Password   = 'your_app_password';          // 您的應用程式密碼 (非一般登入密碼)
+        $mail->Username   = 'tsungpin950118@gmail.com';       // 您的信箱
+        $mail->Password   = 'eyhmeeyzflqsomni';          // 您的應用程式密碼 (非一般登入密碼)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         $mail->CharSet    = 'UTF-8';
-
+    
         // --- 寄件者與收件者 ---
-        $mail->setFrom('your_email@gmail.com', '臺大昆蟲營系統');
-        $mail->addAddress('target_email@gmail.com');      // 接收通知的信箱
+        $mail->setFrom('tsungpin950118@gmail.com', '臺大昆蟲營系統');
+        $mail->addAddress('tsungpin950118@gmail.com');      // 接收通知的信箱
         $mail->addReplyTo($email, $name);                 // 使用者回信給誰
 
         // --- 內容設定 ---
