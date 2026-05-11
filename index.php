@@ -36,7 +36,7 @@
         <section class="bg-white py-20">
             <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
                 <div class="rounded-3xl overflow-hidden shadow-xl aspect-square md:aspect-auto h-full">
-                    <img src="https://images.unsplash.com/photo-1544383835-bca2bc6f5ea3?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
+                    <img src="DSC02907.JPG" class="w-full h-full object-cover">
                 </div>
                 <div class="space-y-6">
                     <div class="inline-block bg-emerald-100 text-emerald-800 font-bold px-4 py-1 rounded-full text-sm">什麼是昆蟲營？</div>
@@ -58,7 +58,7 @@
                     </p>
                 </div>
                 <div class="rounded-3xl overflow-hidden shadow-xl aspect-square md:aspect-auto h-full md:order-2 order-1">
-                    <img src="https://images.unsplash.com/photo-1600204732101-b8ea4609873a?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
+                    <img src="DSC05006.JPG" class="w-full h-full object-cover">
                 </div>
             </div>
         </section>

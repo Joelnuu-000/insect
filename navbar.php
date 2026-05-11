@@ -2,7 +2,8 @@
 <nav class="fixed top-0 w-full bg-white/95 backdrop-blur shadow-sm z-50">
     <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-20">
         <!-- Logo -->
-        <a href="index.php" class="text-2xl font-black text-emerald-700 tracking-wider hover:text-emerald-800 transition">
+        <a href="index.php" class="flex items-center gap-2 text-2xl font-black text-emerald-700 tracking-wider hover:text-emerald-800 transition">
+            <img src="icon.jpg" alt="Icon" class="w-8 h-8 rounded-full">
             NTU Insect Camp
         </a>
         
