@@ -8,11 +8,12 @@
         </a>
         
         <!-- 手機版漢堡選單按鈕 -->
-        <button id="mobile-menu-button" class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1">
-            <span class="block w-6 h-0.5 bg-stone-600 transition-transform duration-300"></span>
-            <span class="block w-6 h-0.5 bg-stone-600 transition-transform duration-300"></span>
-            <span class="block w-6 h-0.5 bg-stone-600 transition-transform duration-300"></span>
-        </button>
+        <input type="checkbox" id="mobile-menu-toggle" class="hidden">
+        <label for="mobile-menu-toggle" class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1 cursor-pointer">
+            <span class="block w-6 h-0.5 bg-stone-600 transition-all duration-300"></span>
+            <span class="block w-6 h-0.5 bg-stone-600 transition-all duration-300"></span>
+            <span class="block w-6 h-0.5 bg-stone-600 transition-all duration-300"></span>
+        </label>
         
         <!-- 桌面版選單 -->
         <div class="hidden md:flex items-center gap-8 font-bold text-stone-600">
@@ -47,14 +48,15 @@
         </div>
         
         <!-- 手機版選單 -->
-        <div id="mobile-menu" class="md:hidden fixed top-20 left-0 w-full bg-white/95 backdrop-blur shadow-lg border-t border-stone-100 transform -translate-y-full transition-transform duration-300 ease-in-out z-40">
+        <div id="mobile-menu" class="md:hidden fixed top-20 left-0 w-full bg-white/95 backdrop-blur shadow-lg border-t border-stone-100 transform -translate-y-full transition-transform duration-300 ease-in-out z-40 opacity-0 invisible">
             <div class="flex flex-col py-4">
                 <!-- 探索下拉選單 -->
                 <div class="relative">
-                    <button id="mobile-explore-button" class="flex items-center justify-between w-full px-6 py-3 text-stone-600 hover:text-emerald-600 transition font-bold">
+                    <input type="checkbox" id="mobile-explore-toggle" class="hidden">
+                    <label for="mobile-explore-toggle" class="flex items-center justify-between w-full px-6 py-3 text-stone-600 hover:text-emerald-600 transition font-bold cursor-pointer">
                         探索
                         <svg class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
+                    </label>
                     <div id="mobile-explore-menu" class="hidden bg-stone-50">
                         <a href="department.php" class="block px-8 py-2 text-stone-600 hover:bg-emerald-50 hover:text-emerald-700 transition">臺大昆蟲系學會</a>
                         <a href="organization.php" class="block px-8 py-2 text-stone-600 hover:bg-emerald-50 hover:text-emerald-700 transition">營隊組織</a>
@@ -73,57 +75,30 @@
     </div>
 </nav>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileExploreButton = document.getElementById('mobile-explore-button');
-    const mobileExploreMenu = document.getElementById('mobile-explore-menu');
-    const hamburgerLines = mobileMenuButton.querySelectorAll('span');
-    const exploreArrow = mobileExploreButton.querySelector('svg');
-    
-    let menuOpen = false;
-    let exploreOpen = false;
-    
-    // 漢堡選單切換
-    mobileMenuButton.addEventListener('click', function() {
-        menuOpen = !menuOpen;
-        
-        if (menuOpen) {
-            mobileMenu.classList.remove('-translate-y-full');
-            mobileMenu.classList.add('translate-y-0');
-            hamburgerLines[0].classList.add('rotate-45', 'translate-y-1.5');
-            hamburgerLines[1].classList.add('opacity-0');
-            hamburgerLines[2].classList.add('-rotate-45', '-translate-y-1.5');
-        } else {
-            mobileMenu.classList.add('-translate-y-full');
-            mobileMenu.classList.remove('translate-y-0');
-            hamburgerLines[0].classList.remove('rotate-45', 'translate-y-1.5');
-            hamburgerLines[1].classList.remove('opacity-0');
-            hamburgerLines[2].classList.remove('-rotate-45', '-translate-y-1.5');
-        }
-    });
-    
-    // 手機探索下拉選單切換
-    mobileExploreButton.addEventListener('click', function() {
-        exploreOpen = !exploreOpen;
-        
-        if (exploreOpen) {
-            mobileExploreMenu.classList.remove('hidden');
-            exploreArrow.classList.add('rotate-180');
-        } else {
-            mobileExploreMenu.classList.add('hidden');
-            exploreArrow.classList.remove('rotate-180');
-        }
-    });
-    
-    // 點擊外部關閉選單
-    document.addEventListener('click', function(event) {
-        if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
-            if (menuOpen) {
-                mobileMenuButton.click();
-            }
-        }
-    });
-});
-</script>
+<style>
+/* 手機選單顯示 */
+#mobile-menu-toggle:checked ~ #mobile-menu {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 漢堡按鈕動畫 */
+#mobile-menu-toggle:checked ~ label span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+#mobile-menu-toggle:checked ~ label span:nth-child(2) {
+    opacity: 0;
+}
+#mobile-menu-toggle:checked ~ label span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* 手機探索下拉 */
+#mobile-explore-toggle:checked ~ label svg {
+    transform: rotate(180deg);
+}
+#mobile-explore-toggle:checked ~ #mobile-explore-menu {
+    display: block;
+}
+</style>
