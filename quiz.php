@@ -46,7 +46,7 @@ $total_questions = count($questions);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>蟲蟲測驗專區 - 探索你的昆蟲屬性 | 台大昆蟲營</title>
+    <title>蟲蟲測驗專區 - 探索你的昆蟲屬性 | 臺大昆蟲營</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-emerald-50 text-stone-800 font-sans antialiased pt-24 min-h-screen flex flex-col">
@@ -146,7 +146,7 @@ $total_questions = count($questions);
     </main>
 
     <footer class="bg-stone-900 text-stone-400 py-8 text-center mt-auto">
-        <p>&copy; 2026 國立台灣大學昆蟲研習營. All rights reserved.</p>
+        <p>&copy; 2026 國立臺灣大學昆蟲研習營. All rights reserved.</p>
     </footer>
 
 </body>

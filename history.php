@@ -26,7 +26,7 @@ rsort($uploaded_photos);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>歷屆營隊 - 台大昆蟲營</title>
+    <title>歷屆營隊 - 臺大昆蟲營</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-stone-50 text-stone-800 font-sans antialiased pt-24">

@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>課程介紹 - 鱗的執行人 | 台大昆蟲營</title>
+    <title>課程介紹 - 鱗的執行人 | 臺大昆蟲營</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-stone-50 text-stone-800 font-sans antialiased pt-24 min-h-screen flex flex-col">
@@ -52,7 +52,7 @@
                     <h3 class="text-xl font-bold text-stone-800 mb-4">活動地點</h3>
                     <ul class="space-y-2 text-stone-600 font-medium">
                         <li><span class="font-bold text-stone-800">室內課程：</span>國立臺灣大學學新館</li>
-                        <li><span class="font-bold text-stone-800">戶外採集：</span>台大安康農場 (新店區)</li>
+                        <li><span class="font-bold text-stone-800">戶外採集：</span>臺大安康農場 (新店區)</li>
                     </ul>
                 </div>
             </div>
@@ -68,13 +68,13 @@
                 <div class="bg-white p-8 rounded-2xl shadow-sm border-t-4 border-purple-600">
                     <h3 class="text-2xl font-bold text-purple-800 mb-3">主題課程：擬態與偽裝</h3>
                     <p class="text-stone-600 leading-relaxed">
-                        台大昆蟲研習營定番的正式課程由系上同學擔任講師，提供專業主題講解。今年探討昆蟲賴以維生、不可或缺的生存本領，看牠們如何運用擬態欺騙獵物以求溫飽，或是躲避殘酷的食物鏈，這將是自然界最精彩絕倫的爾虞我詐。
+                        臺大昆蟲研習營定番的正式課程由系上同學擔任講師，提供專業主題講解。今年探討昆蟲賴以維生、不可或缺的生存本領，看牠們如何運用擬態欺騙獵物以求溫飽，或是躲避殘酷的食物鏈，這將是自然界最精彩絕倫的爾虞我詐。
                     </p>
                 </div>
                 <div class="bg-white p-8 rounded-2xl shadow-sm border-t-4 border-emerald-500">
                     <h3 class="text-2xl font-bold text-emerald-700 mb-3">戶外採集：走入安康農場</h3>
                     <p class="text-stone-600 leading-relaxed">
-                        每年都會帶領小朋友前往野外運用所學，親自尋找昆蟲的蹤跡。台大安康農場是繁華水泥叢林中為數不多的清幽之地。我們將與小朋友一同闖關、親自拿起捕蟲網體驗捕捉昆蟲，抓住夏天最燦爛美好的記憶。
+                        每年都會帶領小朋友前往野外運用所學，親自尋找昆蟲的蹤跡。臺大安康農場是繁華水泥叢林中為數不多的清幽之地。我們將與小朋友一同闖關、親自拿起捕蟲網體驗捕捉昆蟲，抓住夏天最燦爛美好的記憶。
                     </p>
                 </div>
                 <div class="bg-white p-8 rounded-2xl shadow-sm border-t-4 border-amber-500">
@@ -177,7 +177,7 @@
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                     野外採集時間
                                 </h4>
-                                <p class="text-sm text-emerald-700 mt-1">台大安康農場</p>
+                                <p class="text-sm text-emerald-700 mt-1">臺大安康農場</p>
                             </div>
                         </div>
 
@@ -242,8 +242,8 @@
                         <div class="relative border-l-4 border-indigo-400 pl-4 py-2 space-y-4 my-4 flex-1">
                             <span class="absolute -left-[14px] top-1/2 -translate-y-1/2 bg-indigo-100 text-indigo-800 text-xs font-black px-1 py-4 rounded-full writing-vertical-lr">下午</span>
                             <div class="bg-indigo-50 p-3 rounded-xl">
-                                <h4 class="font-bold text-indigo-900">台灣昆蟲雜談</h4>
-                                <p class="text-sm text-indigo-700">台灣特色昆蟲介紹</p>
+                                <h4 class="font-bold text-indigo-900">臺灣昆蟲雜談</h4>
+                                <p class="text-sm text-indigo-700">臺灣特色昆蟲介紹</p>
                             </div>
                             <div class="bg-indigo-50 p-3 rounded-xl">
                                 <h4 class="font-bold text-indigo-900">執行人的最終考驗</h4>
@@ -274,7 +274,7 @@
     </main>
 
     <footer class="bg-stone-900 text-stone-400 py-8 text-center mt-auto">
-        <p>&copy; 2026 國立台灣大學昆蟲研習營. All rights reserved.</p>
+        <p>&copy; 2026 國立臺灣大學昆蟲研習營. All rights reserved.</p>
     </footer>
 
     <style>

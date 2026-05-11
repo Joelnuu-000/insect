@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->CharSet    = 'UTF-8';
 
         // --- 寄件者與收件者 ---
-        $mail->setFrom('your_email@gmail.com', '台大昆蟲營系統');
+        $mail->setFrom('your_email@gmail.com', '臺大昆蟲營系統');
         $mail->addAddress('target_email@gmail.com');      // 接收通知的信箱
         $mail->addReplyTo($email, $name);                 // 使用者回信給誰
 
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>聯絡我們 - 台大昆蟲營</title>
+    <title>聯絡我們 - 臺大昆蟲營</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-stone-50 text-stone-800 font-sans antialiased pt-24">
@@ -71,12 +71,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
                     <h3 class="text-lg font-bold text-emerald-700 mb-2">社群媒體</h3>
-                    <p class="text-stone-600">Facebook: 台大昆蟲研習營</p>
+                    <p class="text-stone-600">Facebook: 臺大昆蟲研習營</p>
                     <p class="text-stone-600">Instagram: @ntu_insectcamp</p>
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
                     <h3 class="text-lg font-bold text-emerald-700 mb-2">營隊地點</h3>
-                    <p class="text-stone-600">106 台北市大安區羅斯福路四段1號 學新館六樓 (臺灣大學昆蟲系)
+                    <p class="text-stone-600">106 臺北市大安區羅斯福路四段1號 學新館六樓 (臺灣大學昆蟲系)
                     </p>
                 </div>
             </div>
@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </main>
 
     <footer class="bg-stone-900 text-stone-400 py-12 text-center mt-20">
-        <p>&copy; 2026 國立台灣大學昆蟲研習營. All rights reserved.</p>
+        <p>&copy; 2026 國立臺灣大學昆蟲研習營. All rights reserved.</p>
     </footer>
 
 </body>

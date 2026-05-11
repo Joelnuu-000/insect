@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>報名專區 - 台大昆蟲營</title>
+    <title>報名專區 - 臺大昆蟲營</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-stone-50 text-stone-800 font-sans antialiased pt-24 min-h-screen flex flex-col">
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-sm font-bold text-stone-700 mb-2">就讀學校與年級 <span class="text-red-500">*</span></label>
-                        <input type="text" name="school_grade" placeholder="例如：台北市建國中學 一年級" required class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none transition">
+                        <input type="text" name="school_grade" placeholder="例如：臺北市建國中學 一年級" required class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none transition">
                     </div>
                 </div>
             </section>
@@ -150,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </main>
 
     <footer class="bg-stone-900 text-stone-400 py-8 text-center mt-auto">
-        <p>&copy; 2026 國立台灣大學昆蟲研習營. All rights reserved.</p>
+        <p>&copy; 2026 國立臺灣大學昆蟲研習營. All rights reserved.</p>
     </footer>
 
 </body>
